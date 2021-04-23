@@ -16,6 +16,16 @@
 
 //CODE HERE
 
+class Character {
+  constructor(name, type){
+    this.name = name
+    this.type = type
+    this.getInfo = function(){
+      return `This is a ${this.type} character named ${this.name}.`
+    }
+  }
+}
+
 //////////////////PROBLEM 2////////////////////
 
 /*
@@ -34,12 +44,27 @@
 
 //CODE HERE
 
+class NPC extends Character {
+    constructor(name, type, location, phrase){
+      super(name, type);
+      this.location = location
+      this.phrase = phrase
+      this.dialogue = function(){
+        return `${this.name}: ${this.phrase}`
+      }
+    }
+
+}
+
+
 /*
     Create an NPC named Ralph who is a human located in Niceland. His phrase should be `I'm gonna wreck it!`. 
     Store your new NPC in a variable called 'ralph'.
 */
 
 //CODE HERE
+
+let ralph = new NPC('Ralph', "human", "Niceland", "I'm gonna wreck it!")
 
 /*
     Next you're going to create three variables to store information about Ralph.
@@ -49,6 +74,10 @@
 */
 
 //CODE HERE
+let ralphsInfo = ralph.getInfo();
+let ralphsDialogue = ralph.dialogue();
+let ralphsLocation = ralph.location;
+
 
 //////////////////PROBLEM 3////////////////////
 
@@ -61,19 +90,48 @@
     - defend(amount)
       - Accepts an amount (another player's attackLevel) as a parameter and subtracts 
         that amount from the current player's healthLevel
-      - If the healthLevel is above 0, it should return an object with 3 properties. 
+   >   - If the healthLevel is above 0, it should return an object with 3 properties. 
+
+
+   
           - The first property should be named 'attackStrength' 
             and should be equal to the amount that the player is defending against.
+            
+
           - The second property should be named 'remainingHealth' 
             and should be equal to the player's remaining healthLevel.
+
+
           - The third property should be named 'message' 
             and should be equal to a string of 'NAME is still in the fight!'
+
+
       - Otherwise, it should return a string of 'NAME has been defeated!'
 
   Call your new class Player
 */
 
 //CODE HERE
+
+class Player extends Character {
+  constructor(name, type, healthLevel, attackLevel){
+    super(name, type);
+    this.healthLevel = healthLevel,
+    this.attackLevel = attackLevel
+    this.defend = function(amount){
+      this.healthLevel -= amount 
+      if (this.healthLevel > 0){
+        return {
+          attackStrength: amount,
+          remainingHealth: this.healthLevel,
+          message: `${this.name} is still in the fight!`
+        } 
+      } else return `${this.name} has been defeated!`
+
+    }
+  }
+}
+
 
 /*
     Next, we'll create two Players.
@@ -85,6 +143,11 @@
 
 //CODE HERE
 
+let aang = new Player('Aang', 'airbender', 100, 100)
+let ozai = new Player('Ozai', 'firebender', 100, 0)
+
+
+
 /*
     Let's see how a fight between these two would go. 
     Create a variable called 'battle' whose value is Ozai's 
@@ -94,16 +157,24 @@
 
 //CODE HERE
 
+let battle = ozai.defend(100);
+// console.log(battle)
+
 //////////////////PROBLEM 4////////////////////
 
 /*
   Now you'll make a hero class that extends Player
   Call your new class Hero
+
   Each hero has all of the same properties as a player with the following additional property:
     - superPowers (an empty array)
+
+
+
   Each hero has the following additional methods:
     - addSuperPower(power)
       - Accepts a power (string) as a parameter and adds it to the hero's superPower array
+
     - useSuperPower(index)
       - Accepts an index (number) and returns the power at that index in a string of 'NAME used POWER!'
       - Be sure to match the punctuation of the string.
@@ -112,13 +183,43 @@
 
 //CODE HERE
 
+class Hero extends Player {
+  constructor(name, type, healthLevel, attackLevel){
+    super(name, type, healthLevel, attackLevel);
+    this.superPowers = [];
+    this.addSuperPower = function(power){
+      this.superPowers.push(power)
+    }
+    this.useSuperPower = function(index){
+      return `${this.name} used ${this.superPowers[index]}!`
+    }
+  }
+}
+
+
 /*
   Create a hero named 'Fire Spitter' whose type is 'dragon'. 
   Fire Spitter's healthLevel and attackLevels should both be 5000. 
   Store this information in a variable called fireSpitter.
+
+
+
+
+
   After you create Fire Spitter, add three super powers using the addSuperPower method. 
+
+
   The first one should be 'spitting fire' and the other two are up to you.
+
+
   Last, invoke useSuperPower passing in 0 for the index and store the result in a variable called fireSpitterAttack.
 */
 
 //CODE HERE
+
+let fireSpitter = new Hero('Fire Spitter', 'dragon', 5000, 5000)
+fireSpitter.addSuperPower('spitting fire')
+fireSpitter.addSuperPower('claw attack')
+fireSpitter.addSuperPower('sweeping wing')
+
+fireSpitterAttack = fireSpitter.useSuperPower(0)
