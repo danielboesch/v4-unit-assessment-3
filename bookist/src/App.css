@@ -1,0 +1,16 @@
+.App {
+  text-align: center;
+}
+
+.booklistShelf {
+  display: flex;
+  justify-content: center;
+}
+
+.booklist {
+  margin-right: 15px;
+}
+
+.shelf {
+  margin-left: 15px;
+}
