@@ -27,7 +27,6 @@ class BookList extends Component {
 
         return(
             <div>
-                <h1>List</h1>
                 <div className='books'>
                 <span className = 'eachBook'>{mappedBooks}</span>
                 </div>
