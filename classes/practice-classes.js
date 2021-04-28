@@ -74,7 +74,7 @@ let ralph = new NPC('Ralph', "human", "Niceland", "I'm gonna wreck it!")
 */
 
 //CODE HERE
-let ralphsInfo = ralph.getInfo();
+m
 let ralphsDialogue = ralph.dialogue();
 let ralphsLocation = ralph.location;
 

@@ -1,12 +1,33 @@
 import React, {Component} from 'react';
 
-function Shelf() {
+class Shelf extends Component {
+    constructor(props){
+        super(props);
+        this.state={
 
-    return(
-    <div>
-        <h1>shelf</h1>
-    </div>
-    )
+        }
+    }
+
+    render(){
+        let mappedTitles = this.props.shelfArr.map((element, index) => {
+            return(
+                
+                <div key={index}>
+                <p>{element}</p>
+                {/* {console.log(element.title)} */}
+                </div>
+            )
+        })
+        return(
+            <div>
+                <h1>Shelf</h1>
+                <button onClick={() => this.props.clearTheShelf()}>Clear Shelf</button>
+                <span>{mappedTitles}</span>
+            </div>
+        )
+    }
+
+
 }
 
-export default Shelf 
+export default Shelf

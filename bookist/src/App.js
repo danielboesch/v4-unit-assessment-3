@@ -10,24 +10,42 @@ class App extends Component{
   constructor(props){
     super(props);
     this.state = {
-      books: data
+      books: data,
+      shelf: []
     }
 
+    this.addToShelf = this.addToShelf.bind(this)
+    this.clearShelf = this.clearShelf.bind(this)
   }
 
+  addToShelf(book){
+    this.setState({shelf: this.state.shelf.concat([book])})
+  }
+
+  clearShelf(){
+    this.setState({shelf: []})
+  }
 
   render(){
 
+
     return (
       <div className="App">
-      <Header />
-      <div class ='booklistShelf'>
-        <div class ='booklist'>
-          <BookList  books = {this.state.books}/>
+      <Header /> 
+      <div className='outerBar'>
+        <div className='searchButtons'>
+          <input placeholder='Search for books'></input>
+          <button> Search </button>
+          <button> Clear Search </button>
+        </div>
+      </div>
+      <div className ='booklistShelf'>
+        <div className ='booklist'>
+          <BookList  books = {this.state.books} addToTheShelf={this.addToShelf}/>
           
         </div>
-        <div class ='shelf'>
-          <Shelf />
+        <div className ='shelf'>
+          <Shelf shelfArr={this.state.shelf} clearTheShelf={this.clearShelf}/>
         </div>
       </div>
     </div>

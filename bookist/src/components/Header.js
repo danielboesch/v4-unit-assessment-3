@@ -1,12 +1,22 @@
 import React, {Component} from 'react';
 
-function Header() {
+class Header extends Component {
+    constructor(props){
+        super(props);
+        this.state={
 
-    return(
-    <div>
-        <h1>bookist</h1>
-    </div>
-    )
+        }
+    }
+
+    render(){
+        return(
+            <div>
+                <h1>bookist</h1>
+            </div>
+        )
+    }
+
+
 }
 
-export default Header 
+export default Header
